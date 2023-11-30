@@ -71,3 +71,8 @@
     flex-wrap: wrap;
     text-align: center;
 }
+
+.filter-btn {
+    margin: 10px;
+    cursor: pointer;
+}

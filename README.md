@@ -18,3 +18,40 @@
 - HTTPs
 - Tree Shaking - remove unused code
 - Different dev and prod bundles
+
+# Food ordering App
+
+
+*  /*
+*  Header
+*   - Logo
+*   - NavItems
+*  Body
+*   - Serch
+*   - RestaurentContainer
+*    - RestaurentCard
+*     - Img
+*     - Restaurent name, cuisine, star rating, deliver time
+*  Footer
+*   - Copyright
+*   - Links
+*   - Address
+*   -Contact
+*  */
+
+# Two type of import/export
+
+- defauls import/export
+
+export dafault Component;
+import Component from "path";
+
+- named import/export
+
+export const Component;
+import { Component} from "path";
+
+# React Hooks
+
+- Normal JS Functions
+- 
