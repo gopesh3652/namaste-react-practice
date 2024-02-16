@@ -4,5 +4,8 @@ export const CDN_URL =
 export const LOGO_URL =
   "https://cdn.dribbble.com/userupload/9903003/file/original-8eae5aec60527b67b7678e42aa2d8645.jpg?resize=752x";
 
-export const API_URL =
-  "https://www.swiggy.com/dapi/restaurants/list/v5?lat=26.8036533&lng=75.8084579&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
+export const RES_LIST =
+  "https://www.swiggy.com/dapi/restaurants/list/v5?lat=27.5529907&lng=76.6345735&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
+
+export const RES_INFO =
+  "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=27.5529907&lng=76.6345735&restaurantId=";

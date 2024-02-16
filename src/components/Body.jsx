@@ -1,7 +1,8 @@
 import RestaurentCard from "./RestaurentCard";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Shimmer from "./Shimmer";
-import { API_URL } from "../utils/constants";
+import { RES_LIST } from "../utils/constants";
 
 const Body = () => {
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
@@ -16,7 +17,7 @@ const Body = () => {
 
   // fetching data from api using async await
   const fetchData = async () => {
-    const data = await fetch(API_URL);
+    const data = await fetch(RES_LIST);
     // converting fetched data into json
     const json = await data.json();
 
@@ -70,7 +71,12 @@ const Body = () => {
       <div className="res-container">
         {/* initial rendering */}
         {filteredRestaurant.map((restaurant) => (
-          <RestaurentCard key={restaurant.info.id} resData={restaurant} />
+          <Link
+            key={restaurant.info.id}
+            to={"/restaurant/" + restaurant.info.id}
+          >
+            <RestaurentCard resData={restaurant} />
+          </Link>
         ))}
       </div>
     </div>
