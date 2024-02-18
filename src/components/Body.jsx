@@ -19,7 +19,6 @@ const Body = () => {
   // fetching data from api using async await
   const fetchData = async () => {
     const data = await fetch(RES_LIST);
-
     // converting fetched data into json
     const json = await data.json();
 
@@ -42,15 +41,16 @@ const Body = () => {
     <Shimmer />
   ) : (
     <div className="body">
-      <div className="filter">
-        <div className="search">
+      <div className="flex">
+        <div className="m-4 p-4">
           <input
             type="text"
-            className="search-box"
+            className="border border-black"
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
           />
           <button
+            className="m-4 px-4 py-1 bg-green-100 hover:bg-green-300 rounded-lg"
             onClick={() => {
               const searchedRes = listOfRestaurant.filter((res) => {
                 return res?.info?.name
@@ -63,21 +63,23 @@ const Body = () => {
             Search
           </button>
         </div>
-        <button
-          className="filter-btn"
-          onClick={() => {
-            // filtering restaurant on the basis of rating
-            const filteredList = listOfRestaurant.filter(
-              (res) => res?.info?.avgRating > 4
-            );
-            // rerendering after rating filter
-            setFilteredRestaurant(filteredList);
-          }}
-        >
-          Top Rated restaurant
-        </button>
+        <div className="m-4 px-4 flex items-center">
+          <button
+            className="p-2 border bg-gray-100 hover:bg-gray-300 rounded-lg"
+            onClick={() => {
+              // filtering restaurant on the basis of rating
+              const filteredList = listOfRestaurant.filter(
+                (res) => res?.info?.avgRating > 4
+              );
+              // rerendering after rating filter
+              setFilteredRestaurant(filteredList);
+            }}
+          >
+            Top Rated restaurant
+          </button>
+        </div>
       </div>
-      <div className="res-container">
+      <div className="flex flex-wrap">
         {/* initial rendering */}
         {filteredRestaurant.map((restaurant) => (
           <Link
