@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Shimmer from "./Shimmer";
 import { RES_LIST } from "../utils/constants";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
@@ -18,16 +19,24 @@ const Body = () => {
   // fetching data from api using async await
   const fetchData = async () => {
     const data = await fetch(RES_LIST);
+
     // converting fetched data into json
     const json = await data.json();
 
     setListOfRestaurant(
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
+
     setFilteredRestaurant(
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
+
+  const onlineStatus = useOnlineStatus();
+
+  if (onlineStatus === false) {
+    return <h1>Network Not Found!! Check your Internet Connection</h1>;
+  }
 
   return listOfRestaurant.length === 0 ? (
     <Shimmer />
