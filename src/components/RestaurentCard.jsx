@@ -6,7 +6,9 @@ const RestaurentCard = (props) => {
   const { cloudinaryImageId, name, cuisines, avgRating, costForTwo, sla } =
     resData?.info;
   return (
-    <div className="m-4 p-4 w-[250px] rounded-lg bg-purple-100 hover:bg-purple-400" /*style={{ backgroundColor: "#f0f0f0" }}*/>
+    <div
+      className="m-4 p-4 w-[250px] rounded-lg bg-purple-100 hover:bg-purple-400" /*style={{ backgroundColor: "#f0f0f0" }}*/
+    >
       <img
         className="rounded-lg"
         alt="res-logo"
@@ -19,6 +21,17 @@ const RestaurentCard = (props) => {
       <h4>{sla.deliveryTime} minutes</h4>
     </div>
   );
+};
+
+export const withDiscount = (RestaurentCard) => {
+  return (props) => {
+    return (
+      <div>
+        <label>FLAT DISCOUNT</label>
+        <RestaurentCard />
+      </div>
+    );
+  };
 };
 
 export default RestaurentCard;

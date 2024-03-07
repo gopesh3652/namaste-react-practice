@@ -1,11 +1,13 @@
 import { LOGO_URL } from "../utils/constants";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const Header = () => {
   // [ , ] --> this is normal array destructuring
   const onlineStatus = useOnlineStatus();
+  const { loggedInUser } = useContext(UserContext);
   let [btnName, setBtnName] = useState("Login");
   return (
     <div className="flex justify-between bg-yellow-100 mb-4 shadow-lg sm:bg-pink-100 lg:bg-orange-100">
@@ -17,7 +19,7 @@ const Header = () => {
       <div className="flex items-center">
         <ul className="flex p-4 m-4 text-lg">
           <li className="px-4 hover:bg-orange-200">
-            Online Status : {onlineStatus ? "✅" : "🔴"}
+            Online Status : {onlineStatus ? "🟢" : "🔴"}
           </li>
           <li className="px-4 hover:bg-orange-200">
             <Link to="/">Home</Link>
@@ -43,6 +45,7 @@ const Header = () => {
           >
             {btnName}
           </button>
+          <li className="px-4 hover:bg-orange-200 font-bold">{loggedInUser}</li>
         </ul>
       </div>
     </div>

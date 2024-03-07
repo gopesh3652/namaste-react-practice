@@ -1,15 +1,17 @@
-import RestaurentCard from "./RestaurentCard";
-import { useState, useEffect } from "react";
+import RestaurentCard, { withDiscount } from "./RestaurentCard";
+import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import Shimmer from "./Shimmer";
 import { RES_LIST } from "../utils/constants";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const Body = () => {
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
 
   const [searchText, setSearchText] = useState("");
+  // const RestaurantDiscount = withDiscount(RestaurentCard);
 
   // useEffect - runs after whole UI is rendered
   useEffect(() => {
@@ -21,15 +23,15 @@ const Body = () => {
     const data = await fetch(RES_LIST);
     // converting fetched data into json
     const json = await data.json();
+    const list =
+      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants;
+    setListOfRestaurant(list);
 
-    setListOfRestaurant(
-      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
-
-    setFilteredRestaurant(
-      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
+    setFilteredRestaurant(list);
   };
+
+  const { setUserName, loggedInUser } = useContext(UserContext);
 
   const onlineStatus = useOnlineStatus();
 
@@ -62,6 +64,12 @@ const Body = () => {
           >
             Search
           </button>
+          <input
+            type="text"
+            className="border border-black"
+            value={loggedInUser}
+            onChange={(e) => setUserName(e.target.value)}
+          />
         </div>
         <div className="m-4 px-4 flex items-center">
           <button
@@ -94,4 +102,7 @@ const Body = () => {
   );
 };
 
+// {listOfRestaurant[0]?.info?.aggregatedDiscountInfoV3 === undefined
+//   ? console.log("hi")
+//   : console.log("bye")}
 export default Body;

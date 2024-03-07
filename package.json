@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/gopesh3652/namaste-react-practice#readme",
   "devDependencies": {
+    "buffer": "^6.0.3",
     "parcel": "^2.10.3",
     "postcss": "^8.4.35",
     "process": "^0.11.10",
