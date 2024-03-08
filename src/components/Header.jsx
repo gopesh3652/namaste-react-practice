@@ -1,6 +1,7 @@
-import { LOGO_URL } from "../utils/constants";
 import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { LOGO_URL } from "../utils/constants";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
 
@@ -8,6 +9,11 @@ const Header = () => {
   // [ , ] --> this is normal array destructuring
   const onlineStatus = useOnlineStatus();
   const { loggedInUser } = useContext(UserContext);
+
+  // subscribing to the store using a selector
+
+  const cartItems = useSelector((store) => store.cart.items);
+
   let [btnName, setBtnName] = useState("Login");
   return (
     <div className="flex justify-between bg-yellow-100 mb-4 shadow-lg sm:bg-pink-100 lg:bg-orange-100">
@@ -22,19 +28,19 @@ const Header = () => {
             Online Status : {onlineStatus ? "🟢" : "🔴"}
           </li>
           <li className="px-4 hover:bg-orange-200">
-            <Link to="/">Home</Link>
+            <Link to="/">Home 🏠</Link>
           </li>
           <li className="px-4 hover:bg-orange-200">
-            <Link to="/about">About Us</Link>
+            <Link to="/about">About Us 🧑‍🤝‍🧑</Link>
           </li>
           <li className="px-4 hover:bg-orange-200">
-            <Link to="/contact">Contact Us</Link>
+            <Link to="/contact">Contact Us 📞</Link>
           </li>
           <li className="px-4 hover:bg-orange-200">
-            <Link to="/grocery">Grocery</Link>
+            <Link to="/grocery">Grocery 🫛</Link>
           </li>
-          <li className="px-4 hover:bg-orange-200">
-            <Link to="/cart">Cart</Link>
+          <li className="px-4 hover:bg-orange-200 font-bold text-xl">
+            <Link to="/cart">🛒 ({cartItems.length} items)</Link>
           </li>
           <button
             // login and logout button on the top changes on a toggle
