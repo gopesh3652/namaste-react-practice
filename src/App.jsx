@@ -4,19 +4,16 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import { Provider } from "react-redux";
 import Header from "./components/Header";
 import Body from "./components/Body";
-import About from "./components/About";
 import Contact from "./components/Contact";
 import Cart from "./components/Cart";
 import RestaurantMenu from "./components/RestaurantMenu";
 import Error from "./components/Error";
-import RestaurantMenu from "./components/RestaurantMenu";
 import Shimmer from "./components/Shimmer";
 import UserContext from "./utils/UserContext";
 import appStore from "./utils/appStore";
-// import Grocery from "./components/Grocery";
 
 const Grocery = lazy(() => import("./components/Grocery"));
-const About = lazy(() => import("./components/About"));
+const LazyAbout = lazy(() => import("./components/About")); // Renamed to LazyAbout
 
 const AppLayout = () => {
   const [userName, setUserName] = useState();
@@ -51,7 +48,11 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/about",
-        element: <About />,
+        element: (
+          <Suspense fallback={<Shimmer />}>
+            <LazyAbout /> {/* Render LazyAbout component here */}
+          </Suspense>
+        ),
       },
       {
         path: "/contact",
