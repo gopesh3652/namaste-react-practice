@@ -24,7 +24,7 @@ const Body = () => {
     // converting fetched data into json
     const json = await data.json();
     const list =
-      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants;
     setListOfRestaurant(list);
 
