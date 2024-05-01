@@ -27,7 +27,7 @@
 *   - Logo
 *   - NavItems
 *  Body
-*   - Serch
+*   - Search
 *   - RestaurentContainer
 *    - RestaurentCard
 *     - Img
@@ -41,7 +41,7 @@
 
 # Two type of import/export
 
-- defauls import/export
+- default import/export
 
 export dafault Component;
 import Component from "path";

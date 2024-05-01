@@ -21,10 +21,11 @@ const Body = () => {
   // fetching data from api using async await
   const fetchData = async () => {
     const data = await fetch(RES_LIST);
+
     // converting fetched data into json
     const json = await data.json();
     const list =
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants;
     setListOfRestaurant(list);
 
